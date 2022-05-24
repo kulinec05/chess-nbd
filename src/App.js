@@ -258,7 +258,7 @@ function App() {
     },
   ]);
   const [field, setField] = useState(defaultField);
-  const moving = useRef(false);
+  const [moving, setMoving] = useState(false);
 
   return (
     <div className="App">
@@ -285,7 +285,7 @@ function App() {
 
                           chessPos[nextCell].pos = [x, y];
                           setChessPos(chessPos);
-                          moving =false
+                          setMoving(false);
                           field[moving[1]][moving[0]] = "e";
                           field[y][x] = chessPos[nextCell].id;
                           setField(field);
@@ -325,9 +325,9 @@ function App() {
                                     moving[0] === x &&
                                     moving[1] === y
                                   ) {
-                                    moving =false
+                                    setMoving(false);
                                   } else {
-                                    moving = [x, y, val.id]
+                                    setMoving([x, y, val.id]);
                                   }
                                 }}
                               >
