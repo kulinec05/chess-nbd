@@ -1,3 +1,5 @@
+import { chessMoveRules } from "../chess-figures/chessMoveRules";
+
 export default function chessMovementHandler(v,x,y,moving,setChessPos,setMoving,setField)  {
     if (v !== "e") {
       setMoving([x, y, v]);
@@ -6,10 +8,10 @@ export default function chessMovementHandler(v,x,y,moving,setChessPos,setMoving,
     if (moving[2] === v) {
       setMoving(false);
     }
-    if (moving) {
+    if (moving &&  chessMoveRules(moving,v,x,y)) {
       setChessPos((prev) => {
         if (v === "e") {
-          console.log('JUST DO IT')
+          
         } else {
           prev[v].killed = true;
         }
@@ -25,5 +27,7 @@ export default function chessMovementHandler(v,x,y,moving,setChessPos,setMoving,
 
       setMoving(false);
     } else if (moving) {
+
     }
+    // console.log('from',[moving[0],moving[1]],'to',[x,y])
   }

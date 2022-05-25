@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 import Figure from "./chess-figures/Figure";
-import { chessMovement } from "./chess-figures/chessMovement";
 import chessPosition from "./data/chessPosition";
 import chessField from "./data/chessField";
 import chessMovementHandler from "./functions/chessMoveHandler";

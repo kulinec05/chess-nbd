@@ -11,4 +11,4 @@ function Figure(props) {
      );
 }
 
-export default Figure;Ы
+export default Figure;
