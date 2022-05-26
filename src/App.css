@@ -21,6 +21,33 @@ td {
   
   animation: chess-move 2s linear infinite alternate-reverse;
 }
+.control-buttons{
+position: fixed;
+top:0;
+right:0;
+}
+
+
+
+.restart-button{
+  margin: 5px;
+  
+  background-color: red;
+  width: 100px;
+  height: 30px;
+  transition:200ms all;
+}
+.give-up-button{
+
+  background-color: white;
+
+
+}
+.restart-button:hover{
+  font-size: large;
+}
+
+
 
 @keyframes chess-move {
   from{

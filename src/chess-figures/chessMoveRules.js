@@ -53,24 +53,30 @@ export function chessMoveRules(moving, v, x, y) {
     } else if (moving[2].charAt(0) === "p") {
       if (moving[2].charAt(2) === "s") {
         if (
-          (moving[1] === y + 1 || moving[1] === y + 2) &&
-          moving[1] === 6 &&
-          moving[0] === x
+          ((moving[1] === y + 1 || moving[1] === y + 2) &&
+            moving[1] === 6 &&
+            moving[0] === x &&
+            v === "e") ||
+          (Math.abs(moving[0] - x) === 1 && moving[1] === y + 1 && v !== "e")
         ) {
           return true;
-        } else if (moving[1] === y + 1 && moving[0] === x) {
+        } else if (moving[1] === y + 1 && moving[0] === x && v === "e") {
           return true;
         } else {
           return false;
         }
-      }else{
+      } else {
+        if (Math.abs(moving[0] - x) === 1 && moving[1] - y === 1) {
+        }
         if (
-          (moving[1] === y - 1 || moving[1] === y - 2) &&
-          moving[1] === 1 &&
-          moving[0] === x
+          ((moving[1] === y - 1 || moving[1] === y - 2) &&
+            moving[1] === 1 &&
+            moving[0] === x &&
+            v === "e") ||
+          (Math.abs(moving[0] - x) === 1 && moving[1] === y - 1 && v !== "e")
         ) {
           return true;
-        } else if (moving[1] === y - 1 && moving[0] === x) {
+        } else if (moving[1] === y - 1 && moving[0] === x && v === "e") {
           return true;
         } else {
           return false;

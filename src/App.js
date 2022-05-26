@@ -5,24 +5,25 @@ import Figure from "./chess-figures/Figure";
 import chessPosition from "./data/chessPosition";
 import chessField from "./data/chessField";
 import chessMovementHandler from "./functions/chessMoveHandler";
-
-/*
-h-horse
-k-king
-l-ladia
-s-slon
-p-peshka
-q-queen
-s-silver
-g-gold
-
-*/
+import RestartButton from "./components/RestartButton";
+import DrawButton from "./components/DrawButton";
+import GiveUpButton from "./components/GiveUpButton";
 
 function App() {
-  const [chessPos, setChessPos] = useState(chessPosition);
-
-  const [field, setField] = useState(chessField);
+  const [chessPos, setChessPos] = useState(
+    JSON.parse(JSON.stringify(chessPosition))
+  );
+  const [goldGoes, setGoldGoes] = useState(false);
+  const [field, setField] = useState(JSON.parse(JSON.stringify(chessField)));
   const [moving, setMoving] = useState(false);
+
+  const RestartGame = () => {
+    setChessPos(JSON.parse(JSON.stringify(chessPosition)));
+    setGoldGoes(false);
+    setField(JSON.parse(JSON.stringify(chessField)));
+    setMoving(false);
+
+  };
 
   return (
     <div className="App">
@@ -43,7 +44,7 @@ function App() {
                             ? "cell-entries allow-cell"
                             : "cell-entries"
                         }
-                        onClick={()=>
+                        onClick={() => {
                           chessMovementHandler(
                             v,
                             x,
@@ -51,9 +52,11 @@ function App() {
                             moving,
                             setChessPos,
                             setMoving,
-                            setField
-                          )
-                        }
+                            setField,
+                            setGoldGoes,
+                            goldGoes
+                          );
+                        }}
                       >
                         {v === "e" ? null : (
                           <Figure
@@ -70,12 +73,16 @@ function App() {
           })}
         </tbody>
       </table>
-      <span>
+      <span className="killed">
         {Object.values(chessPos).map((val) => {
           if (val.killed) {
             return <Figure key={val.id} image={val.img} />;
           }
         })}
+      </span>
+      <span className="control-buttons">
+        <RestartButton RestartGame={RestartGame} />
+        <GiveUpButton />
       </span>
     </div>
   );
